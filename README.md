@@ -37,8 +37,8 @@ Corpus = collection of texts
 
 ## WordNet
 
-WordNet is imported from NLTK like other corpus. You can browse WordNet online at http://wordnetweb.
-princeton.edu/perl/webwn or you can use the NLTK WordNet browser by opening a command prompt
+WordNet is imported from NLTK like other corpus. You can browse WordNet online at http://wordnetweb.princeton.edu/perl/webwn 
+or you can use the NLTK WordNet browser by opening a command prompt
 (or terminal) window and typing python (or python3 depending on your computer) to enter the Python
 environment. Type import nltk and nltk.app.wordnet(), and NLTK should open a WordNet browse
 page in your default browser.
@@ -79,8 +79,10 @@ annotation without requiring any additional manual labeling.
 We can use this annotated data in many different ways. For example, we can:
 > • learn a classification model to predict the opinion of a new review that has not been given a star rating
 (for example on another website).
-• use it to identify words or phrases that are most associated with positive and negative opinions.
-• estimate whether we trust the star rating of an existing review.
+
+>• use it to identify words or phrases that are most associated with positive and negative opinions.
+
+>• estimate whether we trust the star rating of an existing review.
 
 In this case, we will model the reviews using a language model. There are 150 restaurant
 reviews that have been given a positive rating (an overall score > 3 out of 5) and 150 that have been
