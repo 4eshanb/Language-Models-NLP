@@ -1,0 +1,93 @@
+1) What are the most frequent 5 unigrams, bigrams, trigrams, 4-grams and 5-grams? And what are their
+frequencies.
+
+5 most frequent 1-grams in positive text:
+[(('food',), 124), (("'s",), 88), (('great',), 83), (('place',), 61), (('restaurant',), 55)]
+5 most frequent 1-grams in negative text:
+[(('food',), 149), (('restaurant',), 96), (('us',), 95), (('service',), 89), (("n't",), 88)]
+
+5 most frequent 2-grams in positive text:
+[(('great', 'food'), 13), (('food', 'excellent'), 12), (('great', 'place'), 9), (('food', 'service'), 8), (('highly', 'recommend'), 8)]
+5 most frequent 2-grams in negative text:
+[(('dining', 'experience'), 12), (('go', 'back'), 10), (('prime', 'rib'), 8), (('number', 'one'), 8), (('coral', 'grill'), 8)]
+
+5 most frequent 3-grams in positive text:
+[(('food', 'wonderful', 'service'), 4), (('millbrae', 'pancake', 'house'), 4), (('recommend', 'place', 'anyone'), 3), (('food', 'even', 'better'), 3), (('would', 'highly', 'recommend'), 3)]
+5 most frequent 3-grams in negative text:
+[(('never', 'go', 'back'), 4), (('go', 'somewhere', 'else'), 3), (('recommend', 'restaurant', 'anyone'), 3), (('dining', 'experience', 'food'), 2), (('asked', 'talk', 'manager'), 2)]
+
+5 most frequent 4-grams in positive text:
+[(('recommend', 'place', 'anyone', 'wants'), 2), (('great', 'food', 'great', 'prices'), 2), (('great', 'food', 'even', 'better'), 2), (('la', 'rosa', 'negra', 'favorite'), 2), (('butternut', 'squash', 'ravioli', 'browned'), 2)]
+5 most frequent 4-grams in negative text:
+[(('1', 'chinese', 'bbq', 'restaurant'), 2), (('would', 'recommend', 'restaurant', 'anyone'), 2), (('one', 'worst', 'experiences', 'ever'), 2), (('place', 'nice', 'care', 'bbq'), 1), (('nice', 'care', 'bbq', 'service'), 1)]
+
+5 most frequent 5-grams in positive text:
+[(('butternut', 'squash', 'ravioli', 'browned', 'butter'), 2), (('squash', 'ravioli', 'browned', 'butter', 'sage'), 2), (('excellent', 'restaurant', 'food', 'wonderful', 'service'), 1), (('restaurant', 'food', 'wonderful', 'service', 'friendly'), 1), (('food', 'wonderful', 'service', 'friendly', 'attentive'), 1)]
+5 most frequent 5-grams in negative text:
+[(('place', 'nice', 'care', 'bbq', 'service'), 1), (('nice', 'care', 'bbq', 'service', "n't"), 1), (('care', 'bbq', 'service', "n't", 'forget'), 1), (('bbq', 'service', "n't", 'forget', 'bring'), 1), (('service', "n't", 'forget', 'bring', 'beer'), 1)]
+
+2)  What are the collocations that were found for each category?
+
+Collocations in negative reviews:
+['prime rib', 'coral grill', 'dining experience', 'fried rice', 'number one', 'crab legs', 'taco bell', 'tourist trap', 'local boys', 'needless say', 'looked like', '227 bistro', 'speak manager', 'health department', 'sunset restaurant', 'wait staff','medium rare', 'pattio area', 'food cold', 'come back']
+
+Collocations in positive reviews:
+['chez capo', 'highly recommend', 'pancake house', 'san francisco', 'mashed potatoes', 'wine list', 'millbrae pancake', 'rosanegra', 'several times', 'worth trip', 'big city', 'food excellent', 'sure try', 'head chef', 'something everyone', 'ala carte', 'eastern market', 'outdoor patio', 'ravioli browned', 'great food']
+
+3) Consider the normalized version of the first sentence of the training data. Given the frequency distributions you created during steps 2 and 3, calculate by hand the probability of that sentence, using a
+bigram model. Show your work.
+
+TA explanation:
+Positive:
+p(bigram/ total bigrams)= 2/6111 because
+p(w2, w1) = p(restaurant, excellent)
+          = p(excellent)p(restaurant|excellent)
+          = p(excellent) [p(restaurant n excellent)/p(excellent)]
+          = (38/6553)[(2/6111)/(38/6553)] = .0003
+
+Negative:
+p(bigram/ total bigrams)= 2/6111 because
+p(w2, w1) = p(restaurant, excellent)
+          = p(excellent)p(restaurant|excellent)
+          = p(excellent) [p(restaurant n excellent)/p(excellent)]
+          = (10/9381)[(0/8747)/(10/9381)] = 0
+
+4) Consider again the first sentence of the training data, but without stopwords removed. What is the
+probability of this sentence using a trigram model. You do not need to calculate the number. Just
+write out the equation with the probabilities you would need to calculate it. What order of Markov
+Assumption is this model using? What would be order of the Markov assumption for a 4-gram model?
+
+
+probability of trigram model:
+p(an, excellent, restaurant) = p(an)p(excellent|an)p(restaurant|excellent,an)
+Markov order assumption for trigram: 2
+
+Markov assumption for a 4-gram model: 3
+
+5)  Calculate by hand P(the [ wine [ list) within the positive domain. Show your work.
+
+Assume stop word is removed
+wine: 17
+list: 13
+wine list: 6
+p(a U b) = p(a) + p(b) - p(a n b) 
+17/6553 + 13/6553 - 6/6111 = .00359
+
+6)  What happens if you encounter a word that is not in your frequency tables when calculating the
+probability of an unseen sentence (a sentence that is not in your training data)?
+
+If you encounter a word that is not in your frequency tables when calculating the
+probability of an unseen sentence, the probability of that sentence is 0 since
+the word is not in the frequency table.
+ex:
+p(w1)p(w2|w1)...
+x = len
+Assume w1 = 0, (0/x)p(w2|w1)... = 0
+
+7) A higher order n-gram (4-gram, 5-gram and so on) model is a better language model than a bi-gram
+or tri-gram model. Would you say this statement is correct? Please state your reasons.
+
+A higher order n-gram model would be better for a bigger dataset because it would give more
+context for the words, and therefore higher n-grams would be a better model generally. But
+if the dataset is low then a lower order n gram would work just fine for being a good language
+model.
